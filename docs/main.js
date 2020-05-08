@@ -16,7 +16,6 @@ window.onload = function() {
     file = "select.png";
     charcount = document.getElementById("charcount");
     darkTheme(inverted);
-    filechanged();
 }
 
 function get_char(current) {
@@ -92,12 +91,18 @@ function tobraille(img) {
     charcount.innerHTML = output_line.length;
 }
 
-function filechanged(input) {
+function handleDrop(event) {
+    event.preventDefault();
+    fileChanged(event.dataTransfer.files[0]);
+}
+
+function fileChanged(input) {
     img = new Image();
     canvas = document.createElement("CANVAS");
     img.onload = function() {
         tobraille(img)
     };
-    if (input) file = URL.createObjectURL(input);
-    img.src = file;
+    
+    if (input) img.srcObject = input;
 }
+
