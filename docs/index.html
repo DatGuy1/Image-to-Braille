@@ -2,12 +2,6 @@
    <head>
       <script src="main.js"></script>
       <script src="dithering.js"></script>
-      <script>
-         function darkTheme(bool) {
-         	text.style.background = ((bool) ? '#333' : '#ccc');
-         	text.style.color = ((bool) ? '#ccc' : '#333');
-         }
-      </script>
       <style>
          body {
          background: #333;
@@ -46,9 +40,9 @@
          <span><input type="checkbox" onchange="inverted = this.checked; darkTheme(inverted); fileChanged();"> Invert</span><br><br>
          <span><input type="checkbox" onchange="dithering = this.checked; fileChanged();"> Dithering</span><br><br>
          <input type="number" min="2" value="50" step="2" onchange="max_width = this.value; fileChanged();"><span>Width (chars)</span><br><br>
-         <input id="red" type="range" min="0.01" max="10" value="1" step="0.01" onchange="r = this.value; fileChanged();"><button onclick="r = 1; document.getElementById('red').value = 1; fileChanged()">Reset</button><span>Red</span><br><br>
-         <input id="green" type="range" min="0.01" max="10" value="1" step="0.01" onchange="g = this.value; fileChanged();"><button onclick="g = 1; document.getElementById('green').value = 1; fileChanged()">Reset</button><span>Green</span><br><br>
-         <input id="blue" type="range" min="0.01" max="10" value="1" step="0.01" onchange="b = this.value; fileChanged();"><button onclick="b = 1; document.getElementById('blue').value = 1; fileChanged()">Reset</button><span>Blue</span><br><br>
+         <input id="red" type="range" min="0.01" max="10" value="1" step="0.01" onchange="redChanged(this);"><button onclick="redChanged(this)">Reset</button><span>Red</span><br><br>
+         <input id="green" type="range" min="0.01" max="10" value="1" step="0.01" onchange="greenChanged(this);"><button onclick="greenChanged(this);">Reset</button><span>Green</span><br><br>
+         <input id="blue" type="range" min="0.01" max="10" value="1" step="0.01" onchange="blueChanged(this);"><button onclick="blueChanged(this);">Reset</button><span>Blue</span><br><br>
          <button onclick="text.select(); document.execCommand('copy');">Copy to clipboard</button><br><br>
          Character Count: <span id="charcount">0</span>
       </div>
