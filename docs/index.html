@@ -3,6 +3,14 @@
       <script src="main.js"></script>
       <script src="dithering.js"></script>
       <link rel="stylesheet" type="text/css" href="main.css">
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165974952-1"></script>
+      <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         gtag('config', 'UA-165974952-1');
+      </script>
    </head>
    <body ondrop="handleDrop(event)" ondragover="event.preventDefault()" onpaste="handleDrop(event)">
       <textarea id="brailleText" readonly></textarea>
