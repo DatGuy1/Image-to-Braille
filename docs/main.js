@@ -1,6 +1,6 @@
 var maxWidth = 50;
-var inverted = false;
-var dithering = false;
+var onDarkTheme = false;
+var onDithering = false;
 var currentImg;
 
 var redValue = 1;
@@ -8,12 +8,24 @@ var greenValue = 1;
 var blueValue = 1;
 
 window.onload = function() {
-    darkTheme(inverted);
+    darkTheme(onDarkTheme);
+}
+
+function changeMaxWidth(newMaxWidth) {
+    maxWidth = newMaxWidth;
+    genBraille();
+}
+
+function switchDithering(toDithering) {
+    onDithering = toDithering;
+    genBraille();
 }
 
 function darkTheme(toDarkTheme) {
+    onDarkTheme = toDarkTheme;
     document.getElementById("text").style.background = ((toDarkTheme) ? '#333' : '#ccc');
     document.getElementById("text").style.color = ((toDarkTheme) ? '#ccc' : '#333');
+    genBraille();
 }
 
 function getChar(current) {
@@ -36,6 +48,7 @@ function nearestMultiple(num, mult) {
 }
 
 function genBraille() {
+    if (currentImg == undefined) return;
     var canvas = document.createElement("canvas");
 
     // Place image on canvas and keep aspect ratio
@@ -60,9 +73,9 @@ function genBraille() {
 
     ctx.drawImage(currentImg, 0, 0, canvas.width, canvas.height);
 
-    if (dithering) rgb2bin();
+    if (onDithering) rgb2bin();
 
-    var output_line = "";
+    var fullOutput = "";
 
     for (var imgy = 0; imgy < canvas.height; imgy += 4) {
         for (var imgx = 0; imgx < canvas.width; imgx += 2) {
@@ -80,32 +93,35 @@ function genBraille() {
                     cindex++;
                 }
             }
-            output_line += getChar(current);
+            fullOutput += getChar(current);
         }
-        output_line += "\n";
+        fullOutput += "\n";
     }
-    document.getElementById("text").value = output_line;
-    document.getElementById("charcount").innerHTML = output_line.length;
+    document.getElementById("brailleText").value = fullOutput;
+    document.getElementById("charCount").innerHTML = fullOutput.length;
 }
 
 function redChanged(redObject) {
-    document.getElementById("redSlider").value = redObject.value;
-    document.getElementById("redCounter").value = redObject.value;
-    redValue = this.value;
+    realValue = redObject.value || 100
+    redValue = realValue / 100;
+    document.getElementById("redCounter").value = realValue;
+    document.getElementById("redSlider").value = realValue;
     genBraille();
 }
 
 function greenChanged(greenObject) {
-    document.getElementById("greenSlider").value = greenObject.value;
-    document.getElementById("greenCounter").value = greenObject.value;
-    greenValue = this.value;
+    realValue = greenObject.value || 100
+    greenValue = realValue / 100;
+    document.getElementById("greenCounter").value = realValue;
+    document.getElementById("greenSlider").value = realValue;
     genBraille();
 }
 
 function blueChanged(blueObject) {
-    document.getElementById("blueSlider").value = blueObject.value;
-    document.getElementById("blueCounter").value = blueObject.value;
-    blueValue = this.value;
+    realValue = blueObject.value || 100
+    blueValue = realValue / 100;
+    document.getElementById("blueCounter").value = realValue;
+    document.getElementById("blueSlider").value = realValue;
     genBraille();
 }
 
@@ -125,6 +141,7 @@ function fileChanged(input) {
     } else {
         var reader = new FileReader();
         reader.onload = function(event) {
+            console.log(event);
             currentImg.src = event.target.result;
             genBraille();
         };
