@@ -23,8 +23,8 @@ function switchDithering(toDithering) {
 
 function darkTheme(toDarkTheme) {
     onDarkTheme = toDarkTheme;
-    document.getElementById("text").style.background = ((toDarkTheme) ? '#333' : '#ccc');
-    document.getElementById("text").style.color = ((toDarkTheme) ? '#ccc' : '#333');
+    document.getElementById("brailleText").style.background = ((toDarkTheme) ? '#333' : '#ccc');
+    document.getElementById("brailleText").style.color = ((toDarkTheme) ? '#ccc' : '#333');
     genBraille();
 }
 
@@ -85,7 +85,7 @@ function genBraille() {
                 for (var y = 0; y < 4; y++) {
                     var temp = ctx.getImageData(imgx + x, imgy + y, 1, 1).data;
                     var pixelColourAvg = ((temp[0] / redValue) + (temp[1] / greenValue) + (temp[2] / blueValue)) / 3;
-                    if (inverted) {
+                    if (onDarkTheme) {
                         if (pixelColourAvg > 128) current[cindex] = 1;
                     } else {
                         if (pixelColourAvg < 128) current[cindex] = 1;
