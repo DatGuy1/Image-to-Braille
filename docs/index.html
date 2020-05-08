@@ -39,7 +39,7 @@
          }
       </style>
    </head>
-   <body ondrop="handleDrop(event)" ondragover="handleDrop(event)" onpaste="handleDrop(event)">
+   <body ondrop="handleDrop(event)" ondragover="event.preventDefault()" onpaste="handleDrop(event)">
       <textarea id="text" readonly></textarea>
       <div id="options">
          <input id="file" type="file" onsubmit="fileChanged(this.files[0])"><br><br>
