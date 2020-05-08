@@ -12,20 +12,20 @@ window.onload = function() {
 }
 
 function changeMaxWidth(newMaxWidth) {
-    maxWidth = newMaxWidth;
-    genBraille();
+	maxWidth = newMaxWidth;
+	genBraille();
 }
 
 function switchDithering(toDithering) {
-    onDithering = toDithering;
-    genBraille();
+	onDithering = toDithering;
+	genBraille();
 }
 
 function darkTheme(toDarkTheme) {
-    onDarkTheme = toDarkTheme;
+	onDarkTheme = toDarkTheme;
     document.getElementById("text").style.background = ((toDarkTheme) ? '#333' : '#ccc');
     document.getElementById("text").style.color = ((toDarkTheme) ? '#ccc' : '#333');
-    genBraille();
+	genBraille();
 }
 
 function getChar(current) {
@@ -48,7 +48,7 @@ function nearestMultiple(num, mult) {
 }
 
 function genBraille() {
-    if (currentImg == undefined) return;
+	if (currentImg == undefined) return;
     var canvas = document.createElement("canvas");
 
     // Place image on canvas and keep aspect ratio
@@ -75,7 +75,7 @@ function genBraille() {
 
     if (onDithering) rgb2bin();
 
-    var fullOutput = "";
+    var output_line = "";
 
     for (var imgy = 0; imgy < canvas.height; imgy += 4) {
         for (var imgx = 0; imgx < canvas.width; imgx += 2) {
@@ -93,12 +93,12 @@ function genBraille() {
                     cindex++;
                 }
             }
-            fullOutput += getChar(current);
+            output_line += getChar(current);
         }
-        fullOutput += "\n";
+        output_line += "\n";
     }
-    document.getElementById("brailleText").value = fullOutput;
-    document.getElementById("charCount").innerHTML = fullOutput.length;
+    document.getElementById("brailleText").value = output_line;
+    document.getElementById("charCount").innerHTML = output_line.length;
 }
 
 function redChanged(redObject) {
@@ -110,7 +110,7 @@ function redChanged(redObject) {
 }
 
 function greenChanged(greenObject) {
-    realValue = greenObject.value || 100
+	realValue = greenObject.value || 100
     greenValue = realValue / 100;
     document.getElementById("greenCounter").value = realValue;
     document.getElementById("greenSlider").value = realValue;
@@ -118,7 +118,7 @@ function greenChanged(greenObject) {
 }
 
 function blueChanged(blueObject) {
-    realValue = blueObject.value || 100
+	realValue = blueObject.value || 100
     blueValue = realValue / 100;
     document.getElementById("blueCounter").value = realValue;
     document.getElementById("blueSlider").value = realValue;
@@ -141,6 +141,7 @@ function fileChanged(input) {
     } else {
         var reader = new FileReader();
         reader.onload = function(event) {
+            console.log(event);
             currentImg.src = event.target.result;
             genBraille();
         };
