@@ -125,7 +125,6 @@ function fileChanged(input) {
     } else {
         var reader = new FileReader();
         reader.onload = function(event) {
-            console.log(event);
             currentImg.src = event.target.result;
             genBraille();
         };
