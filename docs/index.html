@@ -37,12 +37,12 @@
       <textarea id="text" readonly></textarea>
       <div id="options">
          <input id="file" type="file" onsubmit="fileChanged(this.files[0])"><br><br>
-         <span><input type="checkbox" onchange="inverted = this.checked; darkTheme(inverted); fileChanged();"> Invert</span><br><br>
-         <span><input type="checkbox" onchange="dithering = this.checked; fileChanged();"> Dithering</span><br><br>
-         <input type="number" min="2" value="50" step="2" onchange="max_width = this.value; fileChanged();"><span>Width (chars)</span><br><br>
-         <input id="red" type="range" min="0.01" max="10" value="1" step="0.01" onchange="redChanged(this);"><button onclick="redChanged(this)">Reset</button><span>Red</span><br><br>
-         <input id="green" type="range" min="0.01" max="10" value="1" step="0.01" onchange="greenChanged(this);"><button onclick="greenChanged(this);">Reset</button><span>Green</span><br><br>
-         <input id="blue" type="range" min="0.01" max="10" value="1" step="0.01" onchange="blueChanged(this);"><button onclick="blueChanged(this);">Reset</button><span>Blue</span><br><br>
+         <span><input type="checkbox" onchange="inverted = this.checked; darkTheme(inverted); genBraille();"> Invert</span><br><br>
+         <span><input type="checkbox" onchange="dithering = this.checked; genBraille();"> Dithering</span><br><br>
+         <input type="number" min="2" value="50" step="2" onchange="maxWidth = this.value; genBraille();"><span>Width (chars)</span><br><br>
+         <input id="redCounter" type="number" min="1" max="200" value="100" step="1" oninput="redChanged(this);"><input id="redSlider" type="range" min="1" max="200" value="100" step="1" oninput="redChanged(this);"><button onclick="redChanged(this)">Reset</button><span>Red</span><br><br>
+         <input id="greenCounter" type="number" min="1" max="200" value="100" step="1" oninput="greenChanged(this);"><input id="greenSlider" type="range" min="1" max="200" value="100" step="1" oninput="greenChanged(this);"><button onclick="greenChanged(this);">Reset</button><span>Green</span><br><br>
+         <input id="blueCounter" type="number" min="1" max="200" value="100" step="1" oninput="blueChanged(this);"><input id="blueSlider" type="range" min="1" max="200" value="100" step="1" oninput="blueChanged(this);"><button onclick="blueChanged(this);">Reset</button><span>Blue</span><br><br>
          <button onclick="text.select(); document.execCommand('copy');">Copy to clipboard</button><br><br>
          Character Count: <span id="charcount">0</span>
       </div>
