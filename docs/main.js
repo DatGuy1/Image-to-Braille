@@ -73,7 +73,9 @@ function genBraille() {
 
     ctx.drawImage(currentImg, 0, 0, canvas.width, canvas.height);
 
-    if (onDithering) [ctx, canvas] = rgb2bin(ctx, canvas);
+    if (onDithering) {
+        [ctx, canvas] = rgb2bin(ctx, canvas);
+    }
 
     var fullOutput = "";
 
@@ -127,7 +129,25 @@ function blueChanged(blueObject) {
 
 function handleDrop(event) {
     event.preventDefault();
-    fileChanged(event.clipboardData.files[0] || event.dataTransfer.files[0] || event.dataTransfer.getData("text"));
+    var fileInput;
+    if (event.clipboardData !== undefined) {
+        if (event.clipboardData.files.length > 0) {
+            fileInput = event.clipboardData.files[0];
+        } else {
+            fileInput = event.clipboardData.getData("text")
+        }
+    } else if (event.dataTransfer !== undefined) {
+        if (event.dataTransfer.files.length > 0) {
+            fileInput = event.dataTransfer.files[0];
+        } else {
+            fileInput = event.dataTransfer.getData("text");
+        }
+    }
+
+    if (fileInput == undefined) {
+        throw new TypeError("Couldn't get input");
+    }
+    fileChanged(fileInput);
 }
 
 function fileChanged(input) {
