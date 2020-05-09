@@ -22,7 +22,7 @@
          <input id="redCounter" type="number" min="1" max="200" value="100" step="1" oninput="redChanged(this);"><input id="redSlider" type="range" min="1" max="200" value="100" step="1" oninput="redChanged(this);"><button onclick="redChanged(this)">Reset</button><span>Red</span><br><br>
          <input id="greenCounter" type="number" min="1" max="200" value="100" step="1" oninput="greenChanged(this);"><input id="greenSlider" type="range" min="1" max="200" value="100" step="1" oninput="greenChanged(this);"><button onclick="greenChanged(this);">Reset</button><span>Green</span><br><br>
          <input id="blueCounter" type="number" min="1" max="200" value="100" step="1" oninput="blueChanged(this);"><input id="blueSlider" type="range" min="1" max="200" value="100" step="1" oninput="blueChanged(this);"><button onclick="blueChanged(this);">Reset</button><span>Blue</span><br><br>
-         <button onclick="text.select(); document.execCommand('copy');">Copy to clipboard</button><br><br>
+         <button onclick="brailleText.select(); document.execCommand('copy');">Copy to clipboard</button><br><br>
          Character count: <a id="charCount">0</span>
       </div>
    </body>
