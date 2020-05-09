@@ -73,7 +73,7 @@ function genBraille() {
 
     ctx.drawImage(currentImg, 0, 0, canvas.width, canvas.height);
 
-    if (onDithering) rgb2bin();
+    if (onDithering) [ctx, canvas] = rgb2bin(ctx, canvas);
 
     var fullOutput = "";
 
