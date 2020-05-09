@@ -127,8 +127,28 @@ function blueChanged(blueObject) {
     genBraille();
 }
 
-function handleKeyPress(event) {
 
+function handleKeyDown(event) {
+    if (event.keyCode == 13 && !event.shiftKey) {
+        event.preventDefault();
+        var ctx = document.createElement('canvas').getContext('2d');
+        var brailleValue = document.getElementById("brailleText").value;
+        var brailleList = brailleValue.split("\n");
+        ctx.canvas.width = Math.max.apply(null, brailleList.map(brailleValue => ctx.measureText(brailleValue).width));
+        ctx.canvas.height = 7 * brailleList.length;
+        var heightPerMessage = ctx.canvas.height / brailleList.length;
+        for (var i = 0; i < brailleList.length; i++) {
+            if (i == 0) {
+                ctx.fillText(brailleList[i], 0, 5);
+            } else {
+                ctx.fillText(brailleList[i], 0, 7 + (i * heightPerMessage));
+            }
+        }
+        currentImg.src = ctx.canvas.toDataURL();
+        currentImg.onload = function() {
+            genBraille();
+        };
+    }
 }
 
 function handleDrop(event) {
