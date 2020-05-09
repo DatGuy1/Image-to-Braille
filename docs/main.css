@@ -34,3 +34,7 @@ input[type="range"] {
   height: 10px;
   margin: 2%;
 }
+
+input {
+  margin-bottom: 10%;
+}
