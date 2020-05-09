@@ -13,11 +13,11 @@
       </script>
    </head>
    <body ondrop="handleDrop(event)" ondragover="event.preventDefault()" onpaste="handleDrop(event)">
-      <textarea id="brailleText" onkeypress="handleKeyPress(event)"></textarea>
+      <textarea id="brailleText" onkeypress="handleKeyDown(event)"></textarea>
       <div class="options">
          <div>
             <h2>Tutorial</h2>
-            <a>You can paste an image, paste a link to an image, or upload an image. You can also write something in the textbox to the left and press enter for a braille version of it to be generated.</a>
+            <a>You can paste an image, paste a link to an image, or upload an image. You can also write something in the textbox to the left and press enter for a braille version of it to be generated (or shift enter for a newline).</a>
             <br><br>
             <a>Then, mess around with the sliders below to achieve your wanted result</a>
          </div>
