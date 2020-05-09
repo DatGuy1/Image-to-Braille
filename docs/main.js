@@ -127,7 +127,7 @@ function blueChanged(blueObject) {
 
 function handleDrop(event) {
     event.preventDefault();
-    fileChanged(event.dataTransfer.files[0] || event.dataTransfer.getData("text"));
+    fileChanged(event.clipboardData.files[0] || event.dataTransfer.files[0] || event.dataTransfer.getData("text"));
 }
 
 function fileChanged(input) {
