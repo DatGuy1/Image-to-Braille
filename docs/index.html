@@ -6,15 +6,23 @@
       <!-- Global site tag (gtag.js) - Google Analytics -->
       <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165974952-1"></script>
       <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-         gtag('js', new Date());
-         gtag('config', 'UA-165974952-1');
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-165974952-1');
       </script>
    </head>
    <body ondrop="handleDrop(event)" ondragover="event.preventDefault()" onpaste="handleDrop(event)">
-      <textarea id="brailleText" readonly></textarea>
-      <div id="options">
+      <textarea id="brailleText" onkeypress="handleKeyPress(event)"></textarea>
+      <div class="options">
+         <div>
+            <h2>Tutorial</h2>
+            <a>You can paste an image, paste a link to an image, or upload an image. You can also write something in the textbox to the left and press enter for a braille version of it to be generated.</a>
+            <br><br>
+            <a>Then, mess around with the sliders below to achieve your wanted result</a>
+         </div>
+         <hr>
+         <h2>Options</h2>
          <input id="file" type="file" onsubmit="fileChanged(this.files[0])"><br><br>
          <input type="checkbox" onchange="darkTheme(this.checked);"><span>Invert</span><br><br>
          <input type="checkbox" onchange="switchDithering(this.checked);"><span>Dithering</span><br><br>
