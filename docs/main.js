@@ -127,6 +127,10 @@ function blueChanged(blueObject) {
     genBraille();
 }
 
+function handleKeyPress(event) {
+
+}
+
 function handleDrop(event) {
     event.preventDefault();
     var fileInput;
