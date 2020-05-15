@@ -1,7 +1,7 @@
 var maxWidth = 50;
 var onDarkTheme = false;
 var onDithering = false;
-var currentImg;
+var currentImg = new Image();
 
 var redValue = 1;
 var greenValue = 1;
